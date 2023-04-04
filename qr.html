@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Статус системы Occul</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+      }
+      th {
+        font-weight: bold;
+        background-color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Статус системы Occul</h1>
+    <table id="occultable">
+      <thead>
+        <tr>
+          <th>Устройство</th>
+          <th>Статус</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php include 'occultable.php'; ?>
+      </tbody>
+    </table>
+  </body>
+</html>
