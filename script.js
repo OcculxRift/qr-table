@@ -1,18 +1,16 @@
-const url = "https://occul.ticketers.club/status";
-const table = document.getElementById("table-body");
-
-fetch(url)
-  .then((response) => response.json())
-  .then((data) => {
-    data.forEach((row) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${row[0]}</td>
-        <td>${row[1]}</td>
-        <td>${row[2]}</td>
-        <td>${row[3]}</td>
-      `;
-      table.appendChild(tr);
+$(document).ready(function(){
+  $.getJSON("https://occul.ticketers.club/status", function(data) {
+    var table_data = '';
+    var count = 1;
+    $.each(data, function(key, value) {
+      table_data += '<tr>';
+      table_data += '<td>' + count + '</td>';
+      table_data += '<td>' + value[1] + '</td>';
+      table_data += '<td>' + value[2] + '</td>';
+      table_data += '<td>' + new Date().toLocaleDateString() + '</td>';
+      table_data += '</tr>';
+      count++;
     });
-  })
-  .catch((error) => console.error(error));
+    $('#occul_table').append(table_data);
+  });
+});
