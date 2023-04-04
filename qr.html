@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Статус системы Occul</title>
-    <style>
-      table,
-      th,
-      td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        padding: 5px;
-      }
-      th {
-        font-weight: bold;
-        background-color: #eee;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Статус системы Occul</h1>
-    <table id="occultable">
-      <thead>
-        <tr>
-          <th>Устройство</th>
-          <th>Статус</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php include 'occultable.php'; ?>
-      </tbody>
-    </table>
-  </body>
+<head>
+	<title>Таблица данных</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+
+<table>
+	<thead>
+		<tr>
+			<th>№</th>
+			<th>Название</th>
+			<th>Статус</th>
+			<th>Дата</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+			$html = file_get_contents("https://occul.ticketers.club/status"); // Получаем содержимое страницы
+			$obj = json_decode($html, true); // Декодируем JSON-строку в массив PHP
+
+			foreach ($obj as $row) {
+				echo '<tr>';
+				echo '<td>'.$row[0].'</td>';
+				echo '<td>'.$row[1].'</td>';
+				echo '<td>'.$row[2].'</td>';
+				echo '<td>'.$row[3].'</td>';
+				echo '</tr>';
+			}
+		?>
+	</tbody>
+</table>
+
+</body>
 </html>
